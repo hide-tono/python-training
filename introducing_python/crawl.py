@@ -17,7 +17,7 @@ def getLinks(pageUrl, depth):
     try:
         html = urlopen(pageUrl)
     except:
-        print(' ' * depth, "Cannot open url:", pageUrl)
+        #print(' ' * depth, "Cannot open url:", pageUrl)
         return
     bsObj = BeautifulSoup(html, "html.parser")
     try:
@@ -26,7 +26,7 @@ def getLinks(pageUrl, depth):
             title = bsObj.h1.get_text()
         else:
             title = title[0].text
-        print(' ' * depth, title)
+        print(title, ',', pageUrl)
     except:
         pass
         # print("This page is missing something! No worries though!")
@@ -49,7 +49,7 @@ def getLinks(pageUrl, depth):
                     continue
                 # We have encountered a new page
                 newPage = link.attrs['href']
-                print(' ' * depth, "----------------\n", ' ' * depth, newPage)
+                #print(' ' * depth, "----------------\n", ' ' * depth, newPage)
                 pages.add(newPage)
                 getLinks(newPage, depth + 1)
     for link in bsObj.findAll("a", href=re.compile("^(/.*/)$")):
@@ -61,7 +61,7 @@ def getLinks(pageUrl, depth):
                     continue
                 # We have encountered a new page
                 newPage = link.attrs['href']
-                print(' ' * depth, "----------------\n", ' ' * depth, newPage)
+                #print(' ' * depth, "----------------\n", ' ' * depth, newPage)
                 pages.add(newPage)
                 getLinks(baseUrl + newPage, depth + 1)
 
