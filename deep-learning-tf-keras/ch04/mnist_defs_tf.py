@@ -139,7 +139,8 @@ if __name__ == '__main__':
         fig = plt.figure()
         ax_acc = fig.add_subplot(111)
         ax_acc.plot(range(epochs), history['val_acc'],
-                    label='acc', color='black')
+
+                        label='acc', color='black')
         ax_loss = ax_acc.twinx()
         ax_loss.plot(range(epochs), history['val_loss'],
                      label='loss', color='gray')
